@@ -135,6 +135,21 @@
     text-align: center;
   }
 
+  .reviews {
+  	text-align: left;
+  	padding: 20px;
+  }
+
+  .reviews h1 {
+  	text-align: center;
+  }
+
+  .individual {
+  	background: #F6F6F6;
+  	margin-left: 10px;
+  	margin-right: 10px;
+  }
+
   footer {
     margin-top: 2rem;
     background: var(--dark);
@@ -146,29 +161,33 @@
 </style>
 
 <div class="top">
-  <h1>Course Search</h1>
+  <h1>Course Page</h1>
 </div>
 
 <div class="body">
   <div class="filter">
-    <p>This is the filter box</p>
+    <p>This is the filter/search box</p>
   </div>
   <div class="main">
-    <h1>Main body</h1>
     <div class="statistics">
       <p>This is the statistics box</p>
     </div>
     <div class="reviews">
-      <p> This is where the reviews will be</p>
-      {% for post in posts %} 
-		<h1> {{post.review_title}} </h1>
-		<h5>{{post.review_content}}</h5>
-		<p>{{post.review_published}}</p>
-	  {% endfor %}
+      <h1> Reviews </h1>
+	      {% for instance in posts %} 
+	      	<div class="individual">
+				<h3> {{ instance.review_title }} </h3>
+				<h5>{{ instance.review_content }}</h5>
+				<p>{{ instance.review_published }}</p>
+			</div>
+		  {% endfor %}
     </div>
   </div>
   <div class="bestProf"> 
-    <p>This is the best Prof box</p>
+    <p>Professors who have Taught this Course: </p>
+    	{% for instance in posts %} 
+    		<h3>{{ instance.professor_name }}</h3>
+    	{% endfor %}
   </div>
 </div>
 {% endblock %}

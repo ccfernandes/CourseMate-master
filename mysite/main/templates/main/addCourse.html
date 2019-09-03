@@ -5,13 +5,22 @@
 {% block content %}
 
 <h1>Add a course</h1>
-<form method="POST" action="/search/SCU/">
+<h3>No spaces in the course number please!</h3>
+<form method="POST" action="/search/SCU/addcourse/">
 	{% csrf_token %}
-	{{ form.errors }}
-	{{ form.non_field_errors }}
+	{{ form.school.name }}
 	{{ form.as_p }}
-	<!-- <input name="courseNumber">
-	<input name="name"> -->
+
+
+	<!-- <label for="name">Your School: </label>
+    <input id="name" type="text" name="name" value="{{ current_name }}">
+    <input type="submit" value="OK"> -->
+
+
+	<!-- <input name="courseNumber"> -->
+	<!-- {{ form.courseNumber }}
+	{{ form.courseNumber.errors }} -->
+	<!-- <input name="name"> -->
 	<!-- we also want to redirect to that course's page -->
 	<input type="submit" value="submit"/>
 </form>
