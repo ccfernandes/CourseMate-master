@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Tutorial, School, Course ,SchoolCourse
-from tinymce.widgets import TinyMCE #import tinymce library
+# from tinymce.widgets import TinyMCE #import tinymce library
 from django.db import models 
 # Register your models here.
 class TutorialAdmin(admin.ModelAdmin):
@@ -11,9 +11,9 @@ class TutorialAdmin(admin.ModelAdmin):
     ]
 
     #overrides the specific textfield with editor widget from tinymce?
-    formfield_overrides = {
-        models.TextField: {'widget': TinyMCE()}
-    }
+    # formfield_overrides = {
+    #     models.TextField: {'widget': TinyMCE()}
+    # }
 
 admin.site.register(Tutorial, TutorialAdmin) 
 admin.site.register(School)

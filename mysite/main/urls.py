@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from . import views 
 
 app_name = "main" #for dynamic url names 
@@ -25,11 +25,21 @@ urlpatterns = [
     path('login/', views.login, name="login"),
     path('about/', views.about, name="about"),
     path('review/', views.review, name="review"),
-    path('search/', views.search, name="search"),
-    path('search/SCU/', views.SCU, name="SCU"),
-    path('search/SCU/addcourse/', views.addCourse, name="addcourse"),
-    path('course/', views.course, name="course")
+    path('search/', views.SearchPage, name="search"),
+    path('course/', views.course, name="course"),
 
+    # search page for each college
+    path('search/<slug:my_id>/', views.college, name="college"), 
+
+    #add a course for each college
+    path('search/<slug:my_id>/addcourse/', views.addCourse, name="addcourse"),
+    # path('search/UCB/addcourse/', views.addCourse, name="addcourse"),
+    # path('search/UCSB/addcourse/', views.addCourse, name="addcourse"),
+    # path('search/SCU/addcourse/', views.addCourse, name="addcourse"),
+
+    #path for each course 
+    path('search/<slug:course_id>/<int:my_id>/', views.course, name="course"),
+    # re_path(r'^post/(?P<foo>[\w|\W]+)/(?P<bar>[\w|\W]+)/$', views.course))
     # path('forms/', views.CourseView, name="forms"),
     # path('review_form_submission/', views.review_form_submission, name="review_form_submission"),
 ]
